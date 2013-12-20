@@ -52,9 +52,12 @@ describe User do
 
   describe "when email address is already taken" do
     before do
+      puts User.count
       user_with_same_email = @user.dup
-      user_with_same_email.email = @user.email.upcase
+      user_with_same_email.email = "dup@example.org".upcase
       user_with_same_email.save
+
+      @user.email = "dup@example.org"
     end
 
     it { should_not be_valid }
